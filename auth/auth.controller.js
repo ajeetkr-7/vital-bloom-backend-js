@@ -22,14 +22,13 @@ const verifyGoogleToken = asyncHandler(async (req, res) => {
     const { sub: googleId, email, name: name, picture: picture } = payload;
     console.log(googleId, email, name, picture);
     let user = await User.findOne({ googleId });
-
     if (!user) {
         // New user, register with additional information
         user = new User({
             googleId,
             email,
             name,
-            picture
+            picture,
         });
         await user.save();
     }

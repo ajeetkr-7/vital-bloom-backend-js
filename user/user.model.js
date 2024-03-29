@@ -22,7 +22,63 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-
+        level: {
+            type: Number,
+            default: 0,
+        },
+        age: {
+            type: Number,
+            default: 0,
+        },
+        // weight
+        weight: {
+            type: Number,
+            default: 0,
+        },
+        height: {
+            type: Number,
+            default: 0,
+        },
+        // sex - {Male, Female, Other}
+        sex: {
+            type: String,
+            enum: ['Male', 'Female', 'Unspecified'],
+            default: 'Unspecified',
+        },
+        friends: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        }],
+        friendRequestsReceived: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        }],
+        friendRequestsSent: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        }],
+        healthInfo: {
+            smoking: { type: Number, min: 0, max: 10, default: null },
+            smokingStartAge: { type: Number, min: 0, default: null },
+            drinking: { type: Boolean, default: false },
+            workoutFrequency: { type: Number, min: 0, max: 100, default: null },
+            stressLevel: { type: Number, min: 0, max: 10, default: null },
+            jobDetails: {
+                workStatus: { type: Boolean, default: false },
+                workTime: { type: Number, min: 0, max: 16, default: null },
+                satisfaction: { type: Number, min: -1, max: 1, default: null },
+            },
+            bodyDetails: {
+                waistSize: { type: Number, default: null },
+                bloodPressure: { type: Number, enum: [0, 1, 2], default: null },
+                neckSize: { type: Number, default: null }, // Field name with a space for clarity
+                hipSize: { type: Number, default: null },
+            },
+            constantlyTired: { type: Boolean, default: false },
+            exerciseDuration: { type: Number, enum: [0, 1, 2, 3, 4], default: null },
+            sleepAlarmingSign: { type: Boolean, default: false },
+            snoring: { type: Boolean, default: false },
+        },
     },
     {
         timestamps: true,

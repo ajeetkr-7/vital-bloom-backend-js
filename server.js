@@ -6,6 +6,7 @@ import logger from './utils/logger.js'
 import { errorHandler, notFound } from './utils/middleware.js';
 import userRoute from './user/user.route.js'
 import authRoute from './auth/auth.route.js'
+import apiRoute from './api/api.route.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
+app.use('/api', apiRoute);
 
 app.use(notFound);
 app.use(errorHandler);

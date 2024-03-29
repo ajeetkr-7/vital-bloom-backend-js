@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import { User } from "../user/user.model.js";
-
+import mongoose from "mongoose";
 /**
  * Error Middlewares
  */
@@ -43,12 +43,22 @@ function parseCookies(cookieHeader) {
 }
 
 const protect = asyncHandler(async (req, res, next) => {
+    console.log(req.headers)
     const token = parseCookies(req.headers.cookie).userId;
     if (token) {
         try {
+            console.log(token);
+
+            if (!mongoose.Types.ObjectId.isValid(token)) {
+                res.status(400);
+                throw new Error("Invalid user id");
+            }
             //decode token id
             req.user = await User.findById(token).select("-password");
-            if (!req.user) throw Error();
+            console.log(req.user);
+            if (!req.user) {
+                print("User not found");
+            }
             next();
         } catch (error) {
             res.status(401);
