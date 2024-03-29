@@ -39,24 +39,25 @@ const userSchema = mongoose.Schema(
             type: Number,
             default: 0,
         },
+        groupInvites: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Group',
+            },
+        ],
         // sex - {Male, Female, Other}
         sex: {
             type: String,
             enum: ['Male', 'Female', 'Unspecified'],
             default: 'Unspecified',
         },
-        friends: [{
+
+        groupId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        }],
-        friendRequestsReceived: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        }],
-        friendRequestsSent: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-        }],
+            ref: 'Group',
+            default: null,
+        },
+
         healthInfo: {
             smoking: { type: Number, min: 0, max: 10, default: null },
             smokingStartAge: { type: Number, min: 0, default: null },
