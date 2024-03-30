@@ -7,8 +7,6 @@ import { errorHandler, notFound } from './utils/middleware.js';
 import userRoute from './user/user.route.js'
 import authRoute from './auth/auth.route.js'
 import apiRoute from './api/api.route.js'
-import dotenv from 'dotenv';
-dotenv.config();
 
 logger.info(config.MONGOOSE_URI);
 const app = express();

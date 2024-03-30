@@ -1,8 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const CONFIG = {
-  PORT: process.env.PORT||8081,
-  MONGOOSE_URI: process.env.MONGOOSE_URI || "mongodb://localhost:27017/vitalbloom",
+  PORT: process.env.PORT || 8081,
+  MONGOOSE_URI: process.env.MONGOOSE_URI,
   BCRYPT_ROUNDS: Number(process.env.BCRYPT_ROUNDS),
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRE: process.env.JWT_EXPIRE || '1m',
