@@ -4,7 +4,7 @@
   "description": "vital bloom backend built using in express.js",
   "main": "server.js",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "nodemon ./server.js",
